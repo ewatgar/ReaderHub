@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widget_previews.dart';
+import 'package:readerhub/books/books_view.dart';
+import 'package:readerhub/rss/rss_view.dart';
+import 'package:readerhub/settings/settings_view.dart';
 
 void main() {
   runApp(const App());
@@ -34,33 +37,6 @@ class App extends StatelessWidget {
         ),
       ),
     );
-  }
-}
-
-class BooksView extends StatelessWidget {
-  const BooksView({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Center(child: Text('books'));
-  }
-}
-
-class RSSView extends StatelessWidget {
-  const RSSView({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Center(child: Text('rss'));
-  }
-}
-
-class SettingsView extends StatelessWidget {
-  const SettingsView({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Center(child: Text('settings'));
   }
 }
 
