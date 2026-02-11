@@ -31,14 +31,19 @@ class App extends StatelessWidget {
       theme: defaultDarkTheme,
       home: DefaultTabController(
         length: 3,
-        child: Scaffold(
-          appBar: AppBar(
-            backgroundColor: const Color.fromARGB(255, 22, 50, 98),
-            title: Text('Reader Hub'),
+        child: SafeArea(
+          child: Scaffold(
+            appBar: AppBar(
+              backgroundColor: const Color.fromARGB(255, 22, 50, 98),
+              title: Text('Reader Hub'),
+            ),
+            body: TabBarView(
+              physics: const NeverScrollableScrollPhysics(),
+              children: [BooksView(), RSSView(), SettingsView()],
+            ),
+            bottomNavigationBar: MainTabBar(),
+            floatingActionButton: MainFAB(),
           ),
-          body: TabBarView(children: [BooksView(), RSSView(), SettingsView()]),
-          bottomNavigationBar: MainTabBar(),
-          floatingActionButton: MainFAB(),
         ),
       ),
     );

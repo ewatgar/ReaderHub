@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_epub_viewer/flutter_epub_viewer.dart';
 
 class BooksView extends StatelessWidget {
   const BooksView({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return ListView(children: _buildEpubWidgetList());
+    return EpubViewerWidget();
   }
 }
 
@@ -17,4 +18,40 @@ List<Widget> _buildEpubWidgetList() {
     epubList.add(Center(child: Text(text)));
   }
   return epubList;
+}
+
+class EpubViewerWidget extends StatelessWidget {
+  const EpubViewerWidget({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    final epubController = EpubController();
+
+    return Container(
+      color: Colors.white,
+      child: EpubViewer(
+        epubSource: EpubSource.fromUrl(
+          'https://github.com/IDPF/epub3-samples/releases/download/20230704/accessible_epub_3.epub',
+        ),
+        epubController: epubController,
+        displaySettings: EpubDisplaySettings(
+          flow: EpubFlow.paginated,
+          snap: true,
+        ),
+        onChaptersLoaded: (chapters) {
+          // Handle chapters loaded
+        },
+        onEpubLoaded: () async {
+          // Handle epub loaded
+        },
+        onRelocated: (value) {
+          // Handle page change
+        },
+        onTextSelected: (epubTextSelection) {
+          print(epubTextSelection.selectedText);
+          // Handle text selection
+        },
+      ),
+    );
+  }
 }
