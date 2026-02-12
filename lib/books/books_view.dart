@@ -6,22 +6,51 @@ class BooksView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return EpubViewerWidget();
+    return BooksList();
   }
 }
 
-List<Widget> _buildEpubWidgetList() {
-  List<Widget> epubList = [];
+class BooksList extends StatelessWidget {
+  const BooksList({super.key});
 
-  for (var i = 0; i < 20; i++) {
-    String text = '$i.epub';
-    epubList.add(Center(child: Text(text)));
+  @override
+  Widget build(BuildContext context) {
+    List<Widget> epubList = [];
+
+    for (var i = 0; i < 20; i++) {
+      String text = '$i.epub';
+      epubList.add(BookItem(text: text));
+    }
+
+    return Padding(
+      padding: const EdgeInsets.all(20.0),
+      child: ListView(children: epubList),
+    );
   }
-  return epubList;
 }
 
-class EpubViewerWidget extends StatelessWidget {
-  const EpubViewerWidget({super.key});
+class BookItem extends StatelessWidget {
+  const BookItem({super.key, required this.text});
+
+  final String text;
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: OutlinedButton(
+        onPressed: () {},
+        style: OutlinedButton.styleFrom(
+          minimumSize: Size(3, 23),
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.zero),
+        ),
+        child: Text(style: TextStyle(fontSize: 30), text),
+      ),
+    );
+  }
+}
+
+class EpubReader extends StatelessWidget {
+  const EpubReader({super.key});
 
   @override
   Widget build(BuildContext context) {
